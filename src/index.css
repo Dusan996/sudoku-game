@@ -1,13 +1,57 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+		monospace;
+}
+
+#App {
+	position: relative;
+}
+
+.sudoku-container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.sudoku-field {
+	width: 40px;
+	height: 40px;
+	font-size: 20px;
+	text-align: center;
+	border: 1px solid black;
+	margin: 0.5px;
+}
+
+.sudoku-field[disabled] {
+	background-color: lightyellow;
+}
+
+.button-container {
+	padding: 5px 0;
+	display: flex;
+}
+
+.button-container > button {
+	flex: 1;
+	padding: 5px;
+	background: #fff;
+	color: #1857ff;
+	cursor: pointer;
+	border-radius: 5px;
+	border-color: #1857ff;
+	font-size: 16px;
+}
+
+.button-container > button:nth-child(2) {
+	margin: 0 10px;
 }
