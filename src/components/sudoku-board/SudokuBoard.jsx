@@ -8,12 +8,15 @@ import { initialBoard, finishedBoard } from '../../initialBoard';
 export const SudokuBoard = () => {
 	const [sudokuBoard, setSudokuBoard] = useState([]);
 	const [gameStatus, setGameStatus] = useState('');
+	const [showMessage, setShowMessage] = useState(false);
 
 	const convertValue = (val) => (val !== null ? val : '');
 
 	const checkBoard = () => {
+		setShowMessage(true);
 		if (JSON.stringify(sudokuBoard) === JSON.stringify(finishedBoard)) {
-			return setGameStatus('Completed!');
+			setGameStatus('Completed!');
+			return setShowMessage(true);
 		}
 	};
 
@@ -40,11 +43,14 @@ export const SudokuBoard = () => {
 	};
 
 	const isValid = (row, column, number) => {
-		if (checkRow(row, number)) return setGameStatus('Duplicate field in Row');
-		if (checkCol(column, number))
-			return setGameStatus('Duplicate field in Column');
-		if (checkBox(row, column, number))
-			return setGameStatus('Duplicate field in Box 3x3');
+		if (
+			checkRow(row, number) &&
+			checkCol(column, number) &&
+			checkBox(row, column, number)
+		) {
+			setShowMessage(false);
+			return setGameStatus('Duplicate input');
+		}
 		return setGameStatus('');
 	};
 
@@ -63,7 +69,7 @@ export const SudokuBoard = () => {
 
 	return (
 		<div className='sudoku-container'>
-			<p>{gameStatus}</p>
+			{showMessage && <p>{gameStatus}</p>}
 			<div>
 				{sudokuBoard.length &&
 					rows.map((row, index) => {
